@@ -1,0 +1,15 @@
+# Compiled files
+*.o
+*.out
+*.a
+*.so
+
+oss
+worker
+
+*.swp
+*~
+.vscode/
+.DS_Store
+
+*.log
