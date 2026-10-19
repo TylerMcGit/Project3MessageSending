@@ -13,3 +13,4 @@ worker
 .DS_Store
 
 *.log
+log.txt
