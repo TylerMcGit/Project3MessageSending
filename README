@@ -1,0 +1,25 @@
+Name: Tyler McFarland
+Date: 10/14/26
+Environment: opsys (linux), vi, g++, git
+
+How to compile the project:
+Type 'make'
+
+Example of how to run the project:
+./oss -n 3 -s 2 -t 4 -i 0.6 -f log.txt
+
+Options:
+-n  total number of workers to launch
+-s  most workers running at the same time (max 20)
+-t  workers get a random run time between 1 second and this
+-i  minimum simulated time between launching workers
+-f  log file for oss output
+
+How it works:
+oss keeps a simulated clock in shared memory and a process table of 20 PCBs.
+oss sends a message to one worker at a time (round robin through the process table)
+using a message queue, with mtype set to the worker's pid. The worker checks the clock,
+and sends back 1 if it is still running or 0 if it is terminating (mtype set to oss's pid).
+The clock goes up by 250ms divided by the number of running workers each loop.
+oss stops after 60 real seconds or ctrl-c, kills the workers, and frees shared memory and the message queue.
+
